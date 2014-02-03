@@ -1,4 +1,3 @@
-
 setup robot:
 
 - In command line PC
@@ -10,6 +9,7 @@ $ export | grep ROS
 
 Launch roslaunch robot
 3) roslaunch explorer_robot gui_sensor.launch
+--------------------------------------------------
 
 - In command line ROBOT
 export ROS_HOSTNAME=Explorer.local
