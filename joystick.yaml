@@ -1,0 +1,5 @@
+enable_motors: 0
+reset_pose: 1
+steering:
+  axis: {x: 0, y: 5}
+  scale: {x: 0.6, y: 2.5}

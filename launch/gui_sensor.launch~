@@ -1,0 +1,12 @@
+<launch>
+    <arg name="name_host" default="localhost" />
+    <!-- <env name="ROS_MASTER_URI" value="http://ubuntu.local:11311" /> -->
+
+    <rosparam command="load" file="$(find explorer_robot)/explorer.yaml" ns="robot" />
+    <rosparam command="load" file="$(find explorer_robot)/sensor.yaml" ns="sensor" />
+    <rosparam command="load" file="$(find explorer_robot)/joystick.yaml" ns="joy" />
+    <param name="robot_description" textfile="$(find explorer_robot)/explorer.urdf" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find explorer_robot)/sensors.rviz"/>
+    <include file="$(find joystick_control)/launch/mouse3d.launch" /> 
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+  <!-- ROSBRIDGE
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+     <arg name="port" value="9090"/>
+  </include>
+  -->
+  <rosparam command="load" file="$(find explorer_robot)/explorer.yaml" ns="robot" />
+  <rosparam command="load" file="$(find explorer_robot)/sensor.yaml" ns="sensor" />
+  <rosparam command="load" file="$(find explorer_robot)/joystick.yaml" ns="joy" />
+  <param name="robot_description" textfile="$(find explorer_robot)/explorer.urdf" />
+  
+  <node name="robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" />
+  <node name="sensor" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB1" />
+</launch>

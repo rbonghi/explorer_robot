@@ -1,0 +1,17 @@
+<launch>
+    <!-- Remote start -->
+    <!--
+export ROS_IP=192.168.40.193
+export ROS_MASTER_URI="http://192.168.40.193:11311"
+    -->
+    <!-- BUG
+    <machine name="Explorer" address="192.168.40.192" default="never" env-loader="/opt/ros/groovy/env.sh" user="ubuntu" password="ubuntu" />
+    -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+       <arg name="port" value="9090"/>
+    </include>
+    <rosparam command="load" file="explorer.yaml" ns="robot" />
+    <!-- BUG
+    <node machine="Explorer" name="robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" />
+    -->
+</launch>

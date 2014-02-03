@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+     <arg name="port" value="9090"/>
+  </include>
+  <rosparam command="load" file="$(find motion_control)/explorer.yaml" ns="robot" />
+  <node name="robot" pkg="serial_bridge" type="serial_bridge_node"
+         args="/dev/ttyUSB0" />
+</launch>
