@@ -7,10 +7,16 @@ export ROS_MASTER_URI="http://192.168.40.193:11311"
     <!-- BUG
     <machine name="Explorer" address="192.168.40.192" default="never" env-loader="/opt/ros/groovy/env.sh" user="ubuntu" password="ubuntu" />
     -->
+    <!-- ROSBRIDGE
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
        <arg name="port" value="9090"/>
     </include>
-    <rosparam command="load" file="explorer.yaml" ns="robot" />
+    -->
+    <rosparam command="load" file="$(find explorer_robot)/explorer.yaml" ns="robot" />
+    <rosparam command="load" file="$(find explorer_robot)/sensor.yaml" ns="sensor" />
+    <rosparam command="load" file="$(find explorer_robot)/joystick.yaml" ns="joy" />
+    <param name="robot_description" textfile="$(find explorer_robot)/explorer.urdf" />
+
     <!-- BUG
     <node machine="Explorer" name="robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" />
     -->

@@ -1,14 +1,31 @@
 <launch>
-  <!-- ROSBRIDGE
+
+  <rosparam command="load" file="$(find explorer_robot)/joystick.yaml" ns="joy" />
+  <param name="robot_description" textfile="$(find explorer_robot)/urdf/explorer.urdf" />
+  
+  <!-- LOAD bridge robot -->
+  <group ns="robot">
+      <rosparam command="load" file="$(find explorer_robot)/explorer.yaml" />
+      <node name="robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0">
+          <remap from = "/robot/joint_states" to = "/joint_states" />
+      </node>
+  </group>
+  <!-- LOAD bridge sensor -->
+  <group ns="sensor">
+      <rosparam command="load" file="$(find explorer_robot)/sensor.yaml" />
+      <node name="sensor" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB1" />
+  </group>
+  
+  <!-- TF WEB PUB -->
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" />
+
+  <!-- Run robot_pose_publisher -->
+  <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  
+  <!-- ROSBRIDGE -->
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
      <arg name="port" value="9090"/>
   </include>
-  -->
-  <rosparam command="load" file="$(find explorer_robot)/explorer.yaml" ns="robot" />
-  <rosparam command="load" file="$(find explorer_robot)/sensor.yaml" ns="sensor" />
-  <rosparam command="load" file="$(find explorer_robot)/joystick.yaml" ns="joy" />
-  <param name="robot_description" textfile="$(find explorer_robot)/explorer.urdf" />
   
-  <node name="robot" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" />
-  <node name="sensor" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB1" />
 </launch>
