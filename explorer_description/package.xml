@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>explorer_description</name>
+  <version>0.1.0</version>
+  <description>The explorer_robot package</description>
+
+  <maintainer email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://raffaello.officinerobotiche.it/explorer</url>
+
+  <author email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
